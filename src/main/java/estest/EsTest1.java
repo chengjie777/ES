@@ -15,6 +15,7 @@ import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.network.InetAddresses;
 import org.elasticsearch.common.settings.Settings;
@@ -24,6 +25,7 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
+import org.elasticsearch.index.reindex.BulkByScrollTask.Status;
 import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.min.MinAggregationBuilder;
@@ -35,7 +37,7 @@ import cn.elasticsearch.domain.po.Book;
 public class EsTest1 {
 	 private static TransportClient  transPort = null;   
 	    private String esClusterName="rmsCloud";//集群名
-	    private String esServerIps="10.20.19.215";//集群服务IP集合
+	    private String esServerIps="192.168.31.24";//集群服务IP集合
 	    private Integer esServerPort=9300;//ES集群端口
 
 
@@ -113,36 +115,59 @@ public class EsTest1 {
 	   
 	   @Test
 	   public void testGet(){
-		   GetResponse response2 = getTransPortClient().prepareGet("users","user","1").get();
+		   GetResponse response2 = getTransPortClient().prepareGet("users","user","AWBPiZLDWUYBPgibwIZK").get();
 		   String id = response2.getId();
 		   String index = response2.getIndex();
 		   Map<String, Object> source = response2.getSource();
-		   Object object = source.get("username");
-		   
+		   Object object = source.get("nickname");
+		   System.out.println(object);
 		   String string = response2.toString();
-		   
+		   System.out.println(string);
 	   }
 	   
 	   @Test
 	   public void testDelete(){
-		   DeleteResponse response = getTransPortClient().prepareDelete("users","user","1").get();
-		   Result result = response.getResult();
+		   /*DeleteResponse response = getTransPortClient().prepareDelete("users","user","1").get();
+		   Result result = response.getResult();*/
 		   
-		   DeleteByQueryAction.INSTANCE.newRequestBuilder(getTransPortClient()).filter(QueryBuilders.matchQuery("users", "user")).source("username").execute(new ActionListener<BulkByScrollResponse>() {
-			
-			@Override
-			public void onResponse(BulkByScrollResponse response) {
-				// TODO Auto-generated method stub
-				long deleted = response.getDeleted();
-			}
-			
+		  /* BulkByScrollResponse response = DeleteByQueryAction.INSTANCE.newRequestBuilder(getTransPortClient()).
+				   filter(QueryBuilders.matchQuery("age", "92")) //查询条件
+				   .source("users") //index名称
+				   .get();
+		   long deleted = response.getDeleted();
+		   System.out.println(deleted);*/
+		   DeleteByQueryAction.INSTANCE.newRequestBuilder(getTransPortClient())
+		   .filter(QueryBuilders.matchQuery("age","41"))
+		   .source("users").execute(new ActionListener<BulkByScrollResponse>() {
+
 			@Override
 			public void onFailure(Exception arg0) {
 				// TODO Auto-generated method stub
 				
 			}
+
+			@Override
+			public void onResponse(BulkByScrollResponse response) {
+				// TODO Auto-generated method stub
+				long deleted = response.getDeleted();
+				System.out.println(deleted);
+				Status status = response.getStatus();
+				System.out.println(status);
+				
+			}
 		});
 	   }
-	   
+	  @Test
+	  public void testUpdate() throws IOException{
+		  TransportClient client = getTransPortClient();
+		  UpdateResponse response = client.prepareUpdate("users","user", "AWBPqtKLWUYBPgibwIZS")
+		  .setDoc( XContentFactory.jsonBuilder().startObject()
+				  .field("age","88").endObject()).execute().actionGet();
+		  
+		  Result result = response.getResult();
+		  System.out.println(result);
+		  String id = response.getId();
+		  System.out.println(id);
+	  }
 	   
 }
