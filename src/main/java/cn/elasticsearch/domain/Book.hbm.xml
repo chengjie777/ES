@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-28 16:33:34 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cn.elasticsearch.domain.Book" table="book">
+        <comment>book表</comment>
+        <id name="id" type="string">
+            <column name="ID" />
+        </id>
+        <property name="bookName" >
+            <column name="book_name"  not-null="true" unique="true"></column>
+        </property>
+        <property name="author" type="string">
+            <column name="author"></column>
+        </property>
+        <property name="pubHouse" type="string">
+            <column name="pubHouse"></column>
+        </property>
+        <property name="pubDate" type="string">
+            <column name="pub_date"></column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-28 16:33:34 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cn.elasticsearch.domain.GuoTu" table="guotu3400">
+        <comment>guotu表</comment>
+        <id name="id" type="string">
+            <column name="ID" />
+        </id>
+        <property name="tm" >
+            <column name="tm"  not-null="true" unique="true"></column>
+        </property>
+        <property name="qttm" type="string">
+            <column name="qttm"></column>
+        </property>
+        <property name="tcfl" type="string">
+            <column name="tcfl"></column>
+        </property>
+        <property name="ztfl" type="string">
+            <column name="ztfl"></column>
+        </property>
+        <property name="fwjg" type="string">
+            <column name="fwjg"></column>
+        </property>
+        <property name="lanmu" type="string">
+            <column name="lanmu"></column>
+        </property>
+        <property name="tcflyj" type="string">
+            <column name="tcflyj"></column>
+        </property>
+        <property name="tcflej" type="string">
+            <column name="tcflej"></column>
+        </property>
+        <property name="ztflyj" type="string">
+            <column name="ztflyj"></column>
+        </property>
+        <property name="ztflej" type="string">
+            <column name="ztflej"></column>
+        </property>
+    </class>
+</hibernate-mapping>
