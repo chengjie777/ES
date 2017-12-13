@@ -23,7 +23,7 @@
 		<property name="dataSource" ref="dataSource" />
 	    <property name="packagesToScan">
             <list>
-                <value>com.es.domain</value>
+                <value>cn.elasticsearch.domain.po</value>
             </list>
         </property>
 		<property name="hibernateProperties">
@@ -35,7 +35,7 @@
 			</props>
 		</property>
 		<property name="mappingLocations">
-			<value>classpath:cn/elasticsearch/domain/*.hbm.xml</value>
+			<value>classpath:cn/elasticsearch/domain/hbm/*.hbm.xml</value>
 		</property>
 	</bean>
 	

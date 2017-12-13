@@ -3,13 +3,14 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-5-28 16:33:34 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="cn.elasticsearch.domain.GuoTu" table="guotu3400">
+    <class name="cn.elasticsearch.domain.po.GuoTu" table="guotu3400">
         <comment>guotu表</comment>
-        <id name="id" type="string">
+        <id name="id" type="integer">
             <column name="ID" />
+            <generator class="identity"></generator>
         </id>
-        <property name="tm" >
-            <column name="tm"  not-null="true" unique="true"></column>
+        <property name="tm" type="string">
+            <column name="tm"></column>
         </property>
         <property name="qttm" type="string">
             <column name="qttm"></column>

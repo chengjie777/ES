@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.elasticsearch.dao.BookDao;
-import cn.elasticsearch.domain.Book;
+import cn.elasticsearch.domain.po.Book;
 import cn.elasticsearch.service.BookService;
 @Service
 public class BookServiceImpl implements BookService {

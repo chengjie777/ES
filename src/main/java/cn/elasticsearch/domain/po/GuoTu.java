@@ -1,4 +1,4 @@
-package cn.elasticsearch.domain;
+package cn.elasticsearch.domain.po;
 
 public class GuoTu {
 	private String id;

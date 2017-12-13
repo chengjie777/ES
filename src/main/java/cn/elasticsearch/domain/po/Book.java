@@ -1,6 +1,6 @@
-package cn.elasticsearch.domain;
+package cn.elasticsearch.domain.po;
 
-public class Book {
+public class Book implements CharSequence{
 	private String id;
 	private String bookName;
 	private String author;
@@ -54,6 +54,21 @@ public class Book {
 		return "Book [id=" + id + ", book_name=" + bookName + ", author="
 				+ author + ", pubHouse=" + pubHouse + ", pub_date=" + pubDate
 				+ "]";
+	}
+	@Override
+	public int length() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public char charAt(int index) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
