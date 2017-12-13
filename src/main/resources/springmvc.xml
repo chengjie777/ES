@@ -10,7 +10,14 @@
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- 自动扫描com.baobaotao.web 包下的@Controller标注的类控制器类 -->
 	<context:component-scan base-package="cn.elasticsearch.web" />
-	
+	<!-- JSON转换器 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
 	<mvc:annotation-driven/>
 	

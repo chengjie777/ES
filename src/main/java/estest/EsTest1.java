@@ -1,10 +1,18 @@
 package estest;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.DocWriteResponse.Result;
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -12,10 +20,17 @@ import org.elasticsearch.common.network.InetAddresses;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.min.MinAggregationBuilder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Test;
+
+import cn.elasticsearch.domain.po.Book;
 
 public class EsTest1 {
 	 private static TransportClient  transPort = null;   
@@ -75,5 +90,59 @@ public class EsTest1 {
 	        MinAggregationBuilder minAggregationBuilder = AggregationBuilders.min("agg").field("height");
 	        SearchResponse response2 = client.prepareSearch().addAggregation(minAggregationBuilder).execute().actionGet();
 	   }
+	   @Test
+	   public void testJson() throws Exception{
+		   ObjectMapper om=new ObjectMapper();
+		   Book book=new Book();
+		   book.setAuthor("中信所");
+		   book.setBookName("javaScript");
+		   book.setId("111");
+		   book.setPubDate("20171213");
+		   book.setPubHouse("科学技术出版社");
+		   String writeValueAsString = om.writeValueAsString(book);
+		   
+		   System.out.println(writeValueAsString);
+		   Book readValue = om.readValue(writeValueAsString, Book.class);
+		   
+		   System.out.println(readValue);
+		   XContentBuilder jsonBuilder = XContentFactory.jsonBuilder();
+		   XContentBuilder builder = jsonBuilder.startObject().field("book_name","深入理解.net").field("id","222").endObject();
+		   IndexResponse response = getTransPortClient().prepareIndex().setSource(builder).execute().actionGet();
+		   
+	   }
+	   
+	   @Test
+	   public void testGet(){
+		   GetResponse response2 = getTransPortClient().prepareGet("users","user","1").get();
+		   String id = response2.getId();
+		   String index = response2.getIndex();
+		   Map<String, Object> source = response2.getSource();
+		   Object object = source.get("username");
+		   
+		   String string = response2.toString();
+		   
+	   }
+	   
+	   @Test
+	   public void testDelete(){
+		   DeleteResponse response = getTransPortClient().prepareDelete("users","user","1").get();
+		   Result result = response.getResult();
+		   
+		   DeleteByQueryAction.INSTANCE.newRequestBuilder(getTransPortClient()).filter(QueryBuilders.matchQuery("users", "user")).source("username").execute(new ActionListener<BulkByScrollResponse>() {
+			
+			@Override
+			public void onResponse(BulkByScrollResponse response) {
+				// TODO Auto-generated method stub
+				long deleted = response.getDeleted();
+			}
+			
+			@Override
+			public void onFailure(Exception arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	   }
+	   
 	   
 }
