@@ -2,3 +2,4 @@
 *.class
 .classpath
 .settings/
+/pom.xml
