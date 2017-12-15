@@ -162,7 +162,7 @@ public class EsTest1 {
 		  TransportClient client = getTransPortClient();
 		  UpdateResponse response = client.prepareUpdate("users","user", "AWBPqtKLWUYBPgibwIZS")
 		  .setDoc( XContentFactory.jsonBuilder().startObject()
-				  .field("age","88").endObject()).execute().actionGet();
+				  .field("age","89").endObject()).execute().actionGet();
 		  
 		  Result result = response.getResult();
 		  System.out.println(result);
