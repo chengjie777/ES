@@ -10,7 +10,8 @@
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- 自动扫描com.baobaotao.web 包下的@Controller标注的类控制器类 -->
 	<context:component-scan base-package="cn.elasticsearch.web" />
-	<!-- JSON转换器 -->
+	
+	<!-- JSON转换器  使用responseBody时需要用到-->
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
