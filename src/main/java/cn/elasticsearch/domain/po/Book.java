@@ -1,5 +1,7 @@
 package cn.elasticsearch.domain.po;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 public class Book implements CharSequence{
 	private String id;
 	private String bookName;
