@@ -1,6 +1,8 @@
 package cn.elasticsearch.web;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.http.client.methods.RequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -35,6 +37,7 @@ public class BookController {
 public List<Book> findAllBooks(){
 	return bookService.findAllBook();
 }
+
 @ResponseBody
 @RequestMapping(value="/bookListEs")
 public String findBookByQuery(){
@@ -52,5 +55,20 @@ public String findBookByQuery(){
 		sb.append("/r/n");
 	}
 	return sb.toString();
+}
+@RequestMapping(value="/save")
+public void saveBook(){
+	Book book=new Book();
+	book.setBookName("spring4.0");
+	book.setAuthor("詹姆斯");
+	book.setPubDate(new Date().toString());
+	book.setPubHouse("清华出版社");
+	String string = UUID.randomUUID().toString();
+	
+	System.out.println(string);
+	book.setId(string);
+	bookService.saveBook(book);
+	System.out.println("保存成功");
+
 }
 }

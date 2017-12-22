@@ -12,19 +12,20 @@
     <context:component-scan base-package="cn.elasticsearch.service"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory" />
      
-    <!--使用强大的切点表达式语言轻松定义目标方法-->
-	<!-- <aop:config>
-	    通过aop定义事务增强切面
-		<aop:pointcut id="serviceMethod" expression="execution(* com.es.service.*Service.*(..))" />
-		 引用事务增强
-		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
-	</aop:config>
-	
-	事务增强
+     <!-- 事务增强 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		 事务属性定义
+		<!--  事务属性定义 -->
 		<tx:attributes>
 			<tx:method name="*" />
 		</tx:attributes>
-	</tx:advice> -->
+	</tx:advice>
+    <!--使用强大的切点表达式语言轻松定义目标方法-->
+	<aop:config>
+	   <!--  通过aop定义事务增强切面 -->
+		<aop:pointcut id="serviceMethod" expression="execution(* cn.elasticsearch.service.impl.*.*(..))" />
+		<!--  引用事务增强 -->
+		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+	</aop:config>
+	
+	
 </beans>
