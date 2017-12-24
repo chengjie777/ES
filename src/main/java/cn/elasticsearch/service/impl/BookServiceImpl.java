@@ -5,6 +5,7 @@ import java.util.List;
 import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 
 import cn.elasticsearch.dao.BookDao;
@@ -14,6 +15,7 @@ import cn.elasticsearch.service.BookService;
 public class BookServiceImpl implements BookService {
 @Autowired
 private BookDao bookDao;
+
 	@Override
 	public List<Book> findAllBook() {
 		

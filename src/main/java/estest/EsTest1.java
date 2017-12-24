@@ -500,6 +500,9 @@ public class EsTest1 {
 			 .should(QueryBuilders.termQuery("nickname", "95"))
 				.filter(QueryBuilders.rangeQuery("age").gte("70")) 
 			).execute().actionGet();
+	 
+	// SearchResponse response4 = getTransPortClient().prepareSearch("users").setQuery(QueryBuilders.boolQuery().mustNot(QueryBuilders.existsQuery("user"))).execute().actionGet();
+	 
 	 //最大值查询   boost加权重  dismax查询会查询更加匹配的  多个查询条件下更加匹配的  即使只满足一个条件他也会显示   参考:  http://blog.csdn.net/dm_vincent/article/details/41820537
 	 SearchResponse response3 = getTransPortClient().prepareSearch("users").setQuery(
 			 QueryBuilders.disMaxQuery()

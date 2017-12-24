@@ -9,6 +9,9 @@
     <import resource="classpath:DBM-dao.xml" />
      <!--服务层配置 -->
     <import resource="classpath:DBM-service.xml" />
+    
+    <!-- es配置 -->
+    <import resource="classpath:es.xml" />
     <!-- JDBC 操作模板 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg>
