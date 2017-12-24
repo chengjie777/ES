@@ -20,12 +20,12 @@
         <dependency>  
             <groupId>org.elasticsearch</groupId>  
             <artifactId>elasticsearch</artifactId>  
-            <version>5.5.0</version>  
+            <version>5.6.4</version>  
         </dependency>  
         <dependency>  
             <groupId>org.elasticsearch.client</groupId>  
             <artifactId>transport</artifactId>  
-            <version>5.5.0</version>  
+            <version>5.6.4</version>  
         </dependency>
 			<dependency>
 			    <groupId>org.apache.logging.log4j</groupId>
@@ -225,23 +225,7 @@
 		 	<type>pom.lastUpdated</type>
 		 </dependency>
 		 
-		 <dependency>  
-            <groupId>fr.pilato.spring</groupId>  
-            <artifactId>spring-elasticsearch</artifactId>  
-            <version>1.0.0</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.elasticsearch</groupId>  
-            <artifactId>elasticsearch</artifactId>  
-            <version>1.0.0</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework.data</groupId>  
-            <artifactId>spring-data-elasticsearch</artifactId>  
-            <version>1.0.0.RELEASE</version>  
-        </dependency>  
+		
   
         <dependency>  
             <groupId>com.alibaba</groupId>  
