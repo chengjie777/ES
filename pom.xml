@@ -185,6 +185,45 @@
         	<artifactId>aspectjweaver</artifactId>
         	<version>1.7.4</version>
         </dependency>
+		 <dependency>
+		 	<groupId>commons-dbutils</groupId>
+		 	<artifactId>commons-dbutils</artifactId>
+		 	<version>1.5</version>
+		 	<type>pom.lastUpdated</type>
+		 </dependency>
+		 
+		 <dependency>  
+            <groupId>fr.pilato.spring</groupId>  
+            <artifactId>spring-elasticsearch</artifactId>  
+            <version>1.0.0</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.elasticsearch</groupId>  
+            <artifactId>elasticsearch</artifactId>  
+            <version>1.0.0</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework.data</groupId>  
+            <artifactId>spring-data-elasticsearch</artifactId>  
+            <version>1.0.0.RELEASE</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>druid</artifactId>  
+            <version>1.0.5</version>  
+        </dependency>  
+  
+        <!--json-lib -->  
+       <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+	<dependency>
+	    <groupId>net.sf.json-lib</groupId>
+	    <artifactId>json-lib</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
  	</dependencies> 
      <plugin>
 	    <groupId>org.apache.maven.plugins</groupId>

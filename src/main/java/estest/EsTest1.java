@@ -2,6 +2,7 @@ package estest;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -65,6 +66,7 @@ import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.elasticsearch.search.aggregations.metrics.min.MinAggregationBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.h2.util.New;
 import org.junit.Test;
 
 import cn.elasticsearch.domain.po.Book;
@@ -72,7 +74,7 @@ import cn.elasticsearch.domain.po.Book;
 public class EsTest1 {
 	 private static TransportClient  transPort = null;   
 	    private String esClusterName="rmsCloud";//集群名
-	    private String esServerIps="10.20.19.215";//集群服务IP集合
+	    private String esServerIps="192.168.31.24";//集群服务IP集合
 	    private Integer esServerPort=9300;//ES集群端口
 
 
@@ -118,11 +120,13 @@ public class EsTest1 {
 		   TransportClient client = getTransPortClient();
 		   Map<String, Object> map = new HashMap<String, Object>();  
 	        Random ran = new Random();  
-	        map.put("nickname", "试吧" + ran.nextInt(100));  
-	        map.put("sex", ran.nextInt(100));  
-	        map.put("age", ran.nextInt(100));  
-	        map.put("mobile", "111");  
-	        IndexResponse response = client.prepareIndex("users", "user").setSource(map).get(); 
+	        map.put("id",  ran.nextInt(100));  
+	        map.put("title", "book试试"+ran.nextInt(100));  
+	        map.put("pub_house", "清华出版社"+ran.nextInt(100));  
+	        map.put("author", "成杰"+ran.nextInt(100)); 
+	        map.put("year", new Date().toString()); 
+	        
+	        IndexResponse response = client.prepareIndex("book", "book").setSource(map).get(); 
 	        System.out.println(response);
 	        MinAggregationBuilder minAggregationBuilder = AggregationBuilders.min("agg").field("height");
 	        SearchResponse response2 = client.prepareSearch().addAggregation(minAggregationBuilder).execute().actionGet();
