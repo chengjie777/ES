@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	<!-- 扫描com.baobaotao.dao包下所有标注@Repository的DAO组件 -->
     <context:component-scan base-package="cn.elasticsearch.dao"/>
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:*.properties"/>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="user" value="${jdbc.username}"/>

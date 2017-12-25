@@ -231,10 +231,15 @@
             <groupId>com.alibaba</groupId>  
             <artifactId>druid</artifactId>  
             <version>1.0.5</version>  
-        </dependency>  
-  
+        </dependency>
 
 
+
+        <dependency>
+        	<groupId>com.alibaba</groupId>
+        	<artifactId>fastjson</artifactId>
+        	<version>1.2.4</version>
+        </dependency>
  	</dependencies> 
      <plugin>
 	    <groupId>org.apache.maven.plugins</groupId>

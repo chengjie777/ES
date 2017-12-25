@@ -9,14 +9,24 @@
     <import resource="classpath:DBM-dao.xml" />
      <!--服务层配置 -->
     <import resource="classpath:DBM-service.xml" />
+    <!-- es配置 -->
     
     <!-- es配置 -->
-    <import resource="classpath:es.xml" />
+   <!--  <import resource="classpath:es.xml" /> -->
     <!-- JDBC 操作模板 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg>
 			<ref bean="dataSource"/>
 		</constructor-arg>
+    </bean>
+    <!-- es工具 -->
+    <bean id="transportClient" class="cn.elasticsearch.web.TransportClientFactoryBean">
+        <property name="clusterNodes" value="${elasticsearch.esNodes}"/>
+        <property name="clusterName" value="${elasticsearch.cluster.name}"/>
+    </bean>
+   
+    <bean id="transportClientRepository" class="cn.elasticsearch.web.TransportClientRepository">
+        <constructor-arg ref="transportClient"/>
     </bean>
 </beans>
   

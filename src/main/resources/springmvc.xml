@@ -33,6 +33,6 @@
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource"
 		p:basename="i18n/messages" />
-
+	
    
 </beans>  
