@@ -20,16 +20,18 @@ import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.index.query.TermsQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.stereotype.Service;
 
-import cn.elasticsearch.repository.vo.GongKaiKe;
+import cn.elasticsearch.domain.po.GongKaiKe;
+
 
 @Service
-public class ElsticSearchService {
+public class ElsticSearchService implements InitializingBean  {
 	@Autowired  
     private ElasticsearchTemplate elasticsearchTemplate;  
 	@Autowired  

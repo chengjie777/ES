@@ -1,4 +1,4 @@
-package cn.elasticsearch.repository.vo;
+package cn.elasticsearch.domain.po;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

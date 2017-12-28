@@ -9,6 +9,8 @@
     <import resource="classpath:DBM-dao.xml" />
      <!--服务层配置 -->
     <import resource="classpath:DBM-service.xml" />
+
+    <import resource="classpath:springdata/elasticseach.xml" />
     <!-- es配置 -->
     
     <!-- es配置 -->

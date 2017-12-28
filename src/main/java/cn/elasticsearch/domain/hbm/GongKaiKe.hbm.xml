@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-28 16:33:34 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cn.elasticsearch.domain.po.GongKaiKe" table="gongkaike">
+        <comment>公开课表</comment>
+        <id name="id" type="string">
+            <column name="ID" />
+        </id>
+        <property name="lessonname" type="string">
+            <column name="lessonname"></column>
+        </property>
+        <property name="author" type="string">
+            <column name="author"></column>
+        </property>
+        <property name="lessoninfor" type="string">
+            <column name="lessoninfor"></column>
+        </property>
+        <property name="authorinfor" type="string">
+            <column name="authorinfor"></column>
+        </property>
+        <property name="lessonNum" type="string">
+            <column name="lessonnum"></column>
+        </property>
+    </class>
+</hibernate-mapping>
